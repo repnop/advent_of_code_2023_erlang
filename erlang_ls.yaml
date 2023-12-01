@@ -1,0 +1,44 @@
+plt_path: "_build/default/rebar3_25.3.2.6_plt"
+otp_path: "/usr/local/lib/erlang-otp-source"
+apps_dirs:
+  - "_build/default/lib/*"
+  - "lib/*"
+include_dirs:
+  - "_build/default/lib/*/include"
+  - "include"
+  - "lib"
+  - "lib/*/include"
+lenses:
+  enabled:
+    - suggest-spec
+diagnostics:
+  enabled:
+    - bound_var_in_pattern
+    - compiler
+    - dialyzer
+    - unused_includes
+    - unused_macros
+  disabled:
+    - crossref
+    - elvis
+providers:
+  enabled:
+    - text-document-sync
+    - hover
+    - completion
+    - signature-help
+    - definition
+    - references
+    - document-highlight
+    - document-symbol
+    - workspace-symbol
+    - code-action
+    - execute-command
+    - document-formatting
+    - document-range-formatting
+    - document-on-type-formatting
+    - folding-range
+    - implementation
+    - code-lens
+    - rename
+    - call-hierarchy

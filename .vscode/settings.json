@@ -1,0 +1,4 @@
+{
+    "editor.formatOnSave": false,
+    "erlang_ls.logLevel": "debug"
+}

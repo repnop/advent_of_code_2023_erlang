@@ -1,0 +1,10 @@
+{application, aoc,
+ [{description, "Advent of Code Solutions"},
+  {vsn, "1"},
+  {registered, []},
+  {modules, [day1]},
+  {applications, [kernel,
+                  stdlib]},
+  {mod, {aoc, []}},
+  {env, []}
+ ]}.
