@@ -6,6 +6,7 @@
 
 start(normal, _Args) ->
     day1:run(),
+    day2:run(),
     {ok, self()}.
 
 stop(_State) ->

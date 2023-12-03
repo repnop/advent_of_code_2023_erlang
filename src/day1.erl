@@ -48,7 +48,7 @@ digitize_line(String, Return) ->
          {"nine", "9"}],
     case lists:search(fun({Word, _}) -> lists:prefix(Word, String) end, DigitMap) of
         {value, {Word, Digit}} ->
-            {_, Rest} = lists:split(length(Word), String),
+            {_, Rest} = lists:split(length(Word) - 1, String),
             digitize_line(Rest, lists:append(Return, Digit));
         false ->
             [Char | Rest] = String,
@@ -63,7 +63,6 @@ digitize_line(String) ->
 part_two(Input) ->
     InputLines = string:tokens(Input, "\n"),
     DigitizedLines = lists:map(fun digitize_line/1, InputLines),
-    io:format("~p~n", [DigitizedLines]),
     lists:foldr(fun(N, Acc) -> N + Acc end,
                 0,
                 lists:map(fun first_last_digit_combined/1, DigitizedLines)).
