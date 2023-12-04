@@ -8,10 +8,10 @@
 
 -spec parse_roll(string()) -> #roll{}.
 parse_roll(Roll) ->
-    Colors = lists:map(fun(R) -> string:strip(R) end, string:tokens(Roll, ",")),
+    Colors = lists:map(fun(R) -> string:strip(R) end, string:lexemes(Roll, ",")),
     RollValues =
         lists:foldr(fun(CountAndColor, Acc) ->
-                       [Count | ColorL] = string:tokens(CountAndColor, " "),
+                       [Count | ColorL] = string:lexemes(CountAndColor, " "),
                        [ColorName | _] = ColorL,
                        case string:to_integer(Count) of
                            {error, _} -> error("bad integer");
@@ -41,7 +41,7 @@ parse_game(Line) ->
              {GameId, _} ->
                  GameId
          end,
-    GameList = string:tokens(Games, ";"),
+    GameList = string:lexemes(Games, ";"),
     Rolls = lists:map(fun parse_roll/1, GameList),
     #game{id = Id, rolls = Rolls}.
 
@@ -94,7 +94,7 @@ run() ->
     case file:read_file("input/day2.txt") of
         {ok, Input} ->
             InputString = binary_to_list(Input),
-            Games = lists:map(fun parse_game/1, string:tokens(InputString, "\n")),
+            Games = lists:map(fun parse_game/1, string:lexemes(InputString, "\n")),
             io:format("day 2, part 1: ~B~n", [part_one(Games)]),
             io:format("day 2, part 2: ~B~n", [part_two(Games)]),
             ok;

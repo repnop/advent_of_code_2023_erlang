@@ -26,7 +26,7 @@ first_last_digit_combined(String) ->
 
 -spec part_one(string()) -> integer().
 part_one(Input) ->
-    InputLines = string:tokens(Input, "\n"),
+    InputLines = string:lexemes(Input, "\n"),
     lists:foldr(fun(N, Acc) -> N + Acc end,
                 0,
                 lists:map(fun first_last_digit_combined/1, InputLines)).
@@ -61,7 +61,7 @@ digitize_line(String) ->
 
 -spec part_two(string()) -> integer().
 part_two(Input) ->
-    InputLines = string:tokens(Input, "\n"),
+    InputLines = string:lexemes(Input, "\n"),
     DigitizedLines = lists:map(fun digitize_line/1, InputLines),
     lists:foldr(fun(N, Acc) -> N + Acc end,
                 0,
